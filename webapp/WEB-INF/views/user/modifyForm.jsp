@@ -1,47 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<ul>
-				<li><a href="">로그인</a></li>
-				<li><a href="">회원가입</a></li>
-			</ul>
-		</div>
+		
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
 		<!-- //nav -->
 
-		<div id="aside">
-			<h2>회원</h2>
-			<ul>
-				<li>회원정보</li>
-				<li>로그인</li>
-				<li>회원가입</li>
-			</ul>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/userAside.jsp"></jsp:include>
 		<!-- //aside -->
 
 		<div id="content">
@@ -61,24 +42,24 @@
 
 			<div id="user">
 				<div id="modifyForm">
-					<form action="" method="">
+					<form action="" method="get">
 
 						<!-- 아이디 -->
 						<div class="form-group">
 							<label class="form-text" for="input-uid">아이디</label> 
-							<span class="text-large bold">userid</span>
+							<span class="text-large bold">${authUser.id }</span>
 						</div>
 
 						<!-- 비밀번호 -->
 						<div class="form-group">
 							<label class="form-text" for="input-pass">패스워드</label> 
-							<input type="text" id="input-pass" name="" value="" placeholder="비밀번호를 입력하세요"	>
+							<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
 						</div>
 
 						<!-- 이메일 -->
 						<div class="form-group">
 							<label class="form-text" for="input-name">이름</label> 
-							<input type="text" id="input-name" name="" value="" placeholder="이름을 입력하세요">
+							<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
 						</div>
 
 						<!-- //나이 -->
@@ -86,10 +67,10 @@
 							<span class="form-text">성별</span> 
 							
 							<label for="rdo-male">남</label> 
-							<input type="radio" id="rdo-male" name="" value="" > 
+							<input type="radio" id="rdo-male" name="gender" value="male" > 
 							
 							<label for="rdo-female">여</label> 
-							<input type="radio" id="rdo-female" name="" value="" > 
+							<input type="radio" id="rdo-female" name="gneder" value="female" > 
 
 						</div>
 
@@ -109,9 +90,7 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 		
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<!-- //footer -->
 		
 	</div>

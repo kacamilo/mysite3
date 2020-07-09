@@ -13,48 +13,24 @@
 </head>
 <body>
 	<div id="wrap">
-
-		<div id="header">
-			<h1>
-				<a href="${pageContext.request.contextPath }/main">MySite</a>
-			</h1>
-
-			<ul>
-				<li><a href="${pageContext.request.contextPath }/user/loginForm">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath }/user/joinForm">회원가입</a></li>
-			</ul>
-			
-		</div>
+	
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
 		<!-- //nav -->
 
-		<div id="aside">
-			<h2>회원</h2>
-			<ul>
-				<li>회원정보</li>
-				<li>로그인</li>
-				<li>회원가입</li>
-			</ul>
-		</div>
+		
+		<jsp:include page="/WEB-INF/views/include/userAside.jsp"></jsp:include>
 		<!-- //aside -->
 
 		<div id="content">
 			
 			<div id="content-head">
-            	<h3>로그인</h3>
+            	<h3>회원가입</h3>
             	<div id="location">
             		<ul>
-            			<li>홈</li>
+            			<li><a href="${pageContext.request.contextPath }/main">홈</a></li>
             			<li>회원</li>
             			<li class="last">로그인</li>
             		</ul>
@@ -100,9 +76,7 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<!-- //footer -->
 
 	</div>

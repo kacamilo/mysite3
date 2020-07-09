@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.javaex.dao.UserDao;
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
@@ -30,7 +31,7 @@ public class UserController {
 		System.out.println(userVo.toString());
 
 		userService.join(userVo);
-		return "redirect:/main";
+		return "user/joinOk";
 	}
 
 	@RequestMapping("/loginForm")
@@ -55,4 +56,23 @@ public class UserController {
 			return "redirect:/user/loginForm?result=fail";
 		}
 	}
+	
+	@RequestMapping ("/logout")
+	public String logout(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("로그아웃");
+		session.removeAttribute("authUser");
+		session.invalidate();
+		return "redirect:/main";
+	}
+	
+	@RequestMapping("/modifyForm")
+	public String modifyForm(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("/user/modifyForm");
+		UserDao userDao = new UserDao();
+	
+		return "user/modifyForm";
+	}
+	
+	
+
 }
