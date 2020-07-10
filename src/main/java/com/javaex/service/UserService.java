@@ -31,20 +31,18 @@ public class UserService {
 		// 줄여서 쓴다면 return userDao.selectUser(userVo)
 	}
 	
-	//리스트
-	public UserVo List (UserVo userVo) {
-		userVo.getId();
-		userVo.getName();
+	//아이디값 받아오기
+	public UserVo selectId (int no) {
+		System.out.println("userService:selectId");
 		
-		return userVo ;
+		return userDao.selectId(no);
 	}
-	
 
 	// 회원수정
 	public int modify(UserVo userVo) {
 		System.out.println("userService:modify");
-		
-		return userDao.update(userVo);
+	
+		return userDao.modify(userVo);
 	}
 
 	

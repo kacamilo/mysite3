@@ -4,10 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.javaex.dao.UserDao;
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
@@ -17,6 +17,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
 
 	@RequestMapping("/joinForm") // 하나만 쓸 경우 (value= "") 생략가능
 	public String joinForm() {
@@ -56,23 +57,41 @@ public class UserController {
 			return "redirect:/user/loginForm?result=fail";
 		}
 	}
-	
-	@RequestMapping ("/logout")
+
+	@RequestMapping("/logout")
 	public String logout(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("로그아웃");
 		session.removeAttribute("authUser");
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("/modifyForm")
-	public String modifyForm(@ModelAttribute UserVo userVo, HttpSession session) {
+	public String modifyForm(Model model, HttpSession session) {
 		System.out.println("/user/modifyForm");
-		UserDao userDao = new UserDao();
-	
+
+		int no = ((UserVo)session.getAttribute("authUser")).getNo();
+		
+		UserVo vo = userService.selectId(no);
+
+		model.addAttribute("vo", vo);
+
 		return "user/modifyForm";
 	}
-	
-	
 
+	@RequestMapping("/modify")
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("/user/modify" + userVo.toString());
+
+		userService.modify(userVo);
+		
+		UserVo vo = (UserVo) session.getAttribute("authUser");
+		
+		vo.setName(userVo.getName());
+		vo.setPassword(userVo.getPassword());
+		vo.setGender(userVo.getGender());
+		
+		return "redirect:/main";
+
+	}
 }

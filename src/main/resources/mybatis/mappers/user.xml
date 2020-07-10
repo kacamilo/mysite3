@@ -28,15 +28,26 @@
 	]]>
 	</select>
 
+
+	<!-- selectId -->
+		<select id='selectId' parameterType=
+		"com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select id, password, name, gender
+			from users
+			where no=#{no}
+		]]>
+		</select>
+	
+
 	<!-- 회원정보 수정 -->
-		<update id="update" parameterType="com.javaex.vo.UserVo">
+		<update id="modify" parameterType="com.javaex.vo.UserVo">
 			<![CDATA[
 				update users 
-					set password=#{password},
+				set password=#{password},
 			        name=#{name}, 
 			        gender=#{gender}
-				where id=#{id}
-
+				where no=#{no}
 			]]>
 		</update>
 
